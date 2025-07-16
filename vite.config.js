@@ -10,17 +10,12 @@ export default defineConfig({
 	build: {
 		minify: false,
 		rollupOptions: {
-			input: {
-				...Object.fromEntries(
-				glob
-					.sync(["./*.html", "./pages/**/*.html"])
-					.map((file) => [path.relative(__dirname, file.slice(0, file.length - path.extname(file).length)), fileURLToPath(new URL(file, import.meta.url))])
-				),
-				...{author: path.resolve("author", "index.html")}
-			},
+			input: glob
+				.sync(["./*.html", "./pages/**/*.html"])
+				.map((file) => [path.relative(__dirname, file.slice(0, file.length - path.extname(file).length)), fileURLToPath(new URL(file, import.meta.url))]),
 			output: {
-				assetFileNames: "assets/[name].[ext]",
-			},
-		},
-	},
+				assetFileNames: "assets/[name].[ext]"
+			}
+		}
+	}
 });
