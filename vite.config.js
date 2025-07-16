@@ -1,21 +1,8 @@
-import path from "path";
 import { defineConfig } from "vite";
-import glob from "fast-glob";
-import { fileURLToPath } from "url";
 import react from "@vitejs/plugin-react";
 
+// https://vitejs.dev/config/
 export default defineConfig({
-	base: "https://rocketmike12.github.io/goiteens_fe_5_hw01/",
 	plugins: [react()],
-	build: {
-		minify: false,
-		rollupOptions: {
-			input: glob
-				.sync(["./*.html", "./pages/**/*.html"])
-				.map((file) => [path.relative(__dirname, file.slice(0, file.length - path.extname(file).length)), fileURLToPath(new URL(file, import.meta.url))]),
-			output: {
-				assetFileNames: "assets/[name].[ext]"
-			}
-		}
-	}
+	base: "rocketmike12.github.io/goiteens_fe_5_hw01"
 });
